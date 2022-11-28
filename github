@@ -1,0 +1,11 @@
+---
+        - name: umounting lvm
+          hosts: devops
+          user: root
+          connection: ssh
+          tasks:
+
+                 - name: Unmount
+                   mount:
+                         path: /mnt/lvm
+                         state: absent
