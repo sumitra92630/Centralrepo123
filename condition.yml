@@ -1,0 +1,16 @@
+--- 
+        - hosts: linux
+          user: root
+          become: yes
+          connection: ssh
+          tasks: 
+                - name: install apache on debian
+                  command: apt-get -y install apache2
+                  when: ansible_os_family == "Debian"
+                - name: install apache for redhat
+                  command: yum -y install httpd
+                  when: ansible_os_family == "RedHat"
+                - name: shut down CentOS flavored systems
+                  command: /sbin/shutdown -t now
+                  when: ansible_os_family == "RedHat"
+   

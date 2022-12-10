@@ -1,0 +1,13 @@
+---
+        - name: loops testing
+          hosts: linux
+          user: root
+          connection: ssh
+          tasks:
+                - name: add a list of users
+                  user: name='{{item}}' state=present
+                  with_items:
+                       - suna
+                       - sila
+                       - ravi
+                       - raj

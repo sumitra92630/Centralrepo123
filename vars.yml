@@ -1,0 +1,14 @@
+---
+        - hosts: linux
+          user: root
+          connection: ssh
+          vars:
+                  pkgname: nfs 
+              
+          tasks: 
+                - name: httpd install on linux machine
+                  action: yum name='{{pkgname}}' state=installed
+                - name: httpd
+                  action: service name='{{pkgname}}' state=started
+                - name: httpd
+                  action: service name='{{pkgname}}' enabled=yes

@@ -1,0 +1,14 @@
+---
+        - name: vsftpd install  
+          hosts: linux
+          user: root
+          connection: ssh
+          tasks:
+                - name: vsftpd install
+                  action: yum name=vsftpd state=installed
+                  notify: restart vsftpd
+          handlers:
+                - name: restart vsftpd
+                  action: service name=vsftpd state=restarted
+                - name: enabled vsftpd
+                  action: service name=vsftpd enabled=yes

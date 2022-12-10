@@ -1,0 +1,12 @@
+---
+        - name: handlers testing
+          hosts: linux
+          user: root
+          connection: ssh
+          tasks:
+                - name: install httpd 
+                  action: yum name=httpd state=installed
+                  notify: restart httpd
+          handlers: 
+                - name: restart httpd
+                  action: service name=httpd state=restarted

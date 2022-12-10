@@ -1,0 +1,14 @@
+---
+        - name: ntp install
+          hosts: linux
+          user: root
+          connection: ssh
+          tasks:
+                - name: ntp install
+                  action: yum name=ntp state=installed
+                  notify: restart ntpd and enable ntpd
+          handlers:
+                - name: restart ntpd
+                  action: service name=ntpd state=restarted
+                - name: enabled ntpd
+                  action: service name=ntpd enabled=yes

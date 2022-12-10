@@ -1,0 +1,16 @@
+---
+        - name: dhcp install
+          hosts: linux
+          user: root
+          connection: ssh
+          tasks:
+                - name: dhcp install
+                  action: yum name=dhcp state=installed
+                  notify: restart dhcpd 
+                  notify: enabled dhcpd
+          handlers:
+                - name: restart dhcpd
+                  action: service name=dhcpd state=restarted
+          handlers:
+                - name: enabled dhcpd
+                  action: service name=dhcpd enabled=yes
